@@ -12,6 +12,14 @@ public class Node {
     private ActivationFunction activationFunction;
     private List<Double> weights = new ArrayList<>();
 
+    public Node(ActivationFunction activationFunction) {
+        this.activationFunction = activationFunction;
+    }
+
+    public Node() {
+
+    }
+
     public double calculate(double... inputs) {
         double result = 0;
         for (int i = 0; i < inputs.length; i++) {
