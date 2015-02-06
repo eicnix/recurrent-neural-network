@@ -3,6 +3,9 @@ package de.lukaseichler.recurrentneuralnetwork;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import com.google.common.base.Preconditions;
 
 /**
  * @author leichler
@@ -12,7 +15,7 @@ public class Node {
     private ActivationFunction activationFunction;
     private List<Double> weights = new ArrayList<>();
 
-    public Node(ActivationFunction activationFunction) {
+    public Node(@Nullable ActivationFunction activationFunction) {
         this.activationFunction = activationFunction;
     }
 
@@ -20,10 +23,11 @@ public class Node {
 
     }
 
-    public double calculate(double... inputs) {
+    public double calculate(@Nonnull List<Double> inputs) {
+        Preconditions.checkNotNull(inputs);
         double result = 0;
-        for (int i = 0; i < inputs.length; i++) {
-            double input = inputs[i];
+        for (int i = 0; i < inputs.size(); i++) {
+            double input = inputs.get(i);
             result += input * getWeight(i);
         }
         if (activationFunction != null) {
@@ -40,15 +44,17 @@ public class Node {
         return 1;
     }
 
-    public ActivationFunction getActivationFunction() {
+    public @Nullable ActivationFunction getActivationFunction() {
         return activationFunction;
     }
 
-    public void setActivationFunction(ActivationFunction activationFunction) {
+    public void setActivationFunction(@Nullable ActivationFunction activationFunction) {
         this.activationFunction = activationFunction;
     }
 
-    public void setWeights(double... weights) {
+    public void setWeights(@Nonnull double... weights) {
+        Preconditions.checkNotNull(weights);
+
         this.weights = new ArrayList<>(weights.length);
         Arrays.stream(weights).forEach(this.weights::add);
     }

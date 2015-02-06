@@ -2,8 +2,9 @@ package de.lukaseichler.recurrentneuralnetwork;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.sun.istack.internal.NotNull;
-import com.sun.istack.internal.Nullable;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import com.google.common.base.Preconditions;
 
 /**
  * @author leichler
@@ -11,18 +12,19 @@ import com.sun.istack.internal.Nullable;
 public class Layer {
     private final List<Node> nodes;
 
-    public Layer(@NotNull final int nodeCount,@Nullable final ActivationFunction activationFunction) {
+    public Layer(final int nodeCount,@Nullable final ActivationFunction activationFunction) {
         nodes = new ArrayList<>(nodeCount);
         for (int j = 0; j < nodeCount; j++) {
             nodes.add(new Node(activationFunction));
         }
     }
 
-    public Layer(@NotNull final int nodeCount) {
+    public Layer(final int nodeCount) {
         this(nodeCount, null);
     }
 
-    public @NotNull List<Double> calculate(@Nullable double... inputs) {
+    public @Nonnull List<Double> calculate(@Nonnull List<Double> inputs) {
+        Preconditions.checkNotNull(inputs);
         List<Double> results = new ArrayList<>(nodes.size());
         for (Node node : nodes) {
             results.add(node.calculate(inputs));
