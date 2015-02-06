@@ -16,4 +16,14 @@ public class NetworkTest {
                 .addLayer(1);
         assertThat(network.calculate(1, 2, 2)).containsOnly(5.0);
     }
+
+    @Test
+    public void layerStructureWithActivationFunction() throws Exception {
+        Network network = new Network(new LogActivation());
+        network.addLayer(2)
+                .addLayer(1);
+        double value = new LogActivation().apply(5);
+        assertThat(network.calculate(1, 2, 2)).containsOnly(value);
+
+    }
 }

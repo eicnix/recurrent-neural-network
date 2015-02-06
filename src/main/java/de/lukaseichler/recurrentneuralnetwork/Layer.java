@@ -12,15 +12,15 @@ import com.google.common.base.Preconditions;
 public class Layer {
     private final List<Node> nodes;
 
-    public Layer(final int nodeCount,@Nullable final ActivationFunction activationFunction) {
+    public Layer(final int nodeCount) {
+        this(nodeCount, null);
+    }
+
+    public Layer(final int nodeCount, @Nullable final ActivationFunction activationFunction) {
         nodes = new ArrayList<>(nodeCount);
         for (int j = 0; j < nodeCount; j++) {
             nodes.add(new Node(activationFunction));
         }
-    }
-
-    public Layer(final int nodeCount) {
-        this(nodeCount, null);
     }
 
     public @Nonnull List<Double> calculate(@Nonnull List<Double> inputs) {

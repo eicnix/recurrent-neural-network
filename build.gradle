@@ -29,9 +29,9 @@ repositories {
 }
 
 dependencies {
-    compile (
-        ['com.google.code.findbugs:jsr305:3.0.0'],
-        ['com.google.guava:guava:18.0']
+    compile(
+            ['com.google.code.findbugs:jsr305:3.0.0'],
+            ['com.google.guava:guava:18.0']
     )
 
     testCompile(
@@ -56,9 +56,9 @@ sourceSets {
 test {
     useTestNG() {
         suiteXmlBuilder().suite(name: 'gradle-all-tests', parallel: 'tests') {
-            test (name : 'all-tests') {
+            test(name: 'all-tests') {
                 packages {
-                    'package' (name: 'de.lukaseichler.recurrentneuralnetwork')
+                    'package'(name: 'de.lukaseichler.recurrentneuralnetwork')
                 }
             }
         }
