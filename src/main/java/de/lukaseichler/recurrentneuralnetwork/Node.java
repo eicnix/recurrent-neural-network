@@ -44,10 +44,6 @@ public class Node {
         return 1;
     }
 
-    public @Nullable ActivationFunction getActivationFunction() {
-        return activationFunction;
-    }
-
     public void setActivationFunction(@Nullable ActivationFunction activationFunction) {
         this.activationFunction = activationFunction;
     }

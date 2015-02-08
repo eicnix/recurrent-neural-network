@@ -12,6 +12,10 @@ import com.google.common.base.Preconditions;
 public class Layer {
     private final List<Node> nodes;
 
+    public Layer() {
+        this(0);
+    }
+
     public Layer(final int nodeCount) {
         this(nodeCount, null);
     }
@@ -30,5 +34,9 @@ public class Layer {
             results.add(node.calculate(inputs));
         }
         return results;
+    }
+
+    public int getNodeSize() {
+        return nodes.size();
     }
 }

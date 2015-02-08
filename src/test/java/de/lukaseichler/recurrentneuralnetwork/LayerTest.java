@@ -11,6 +11,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class LayerTest {
 
     @Test
+    public void layerWithoutNodes() throws Exception {
+        Layer layer = new Layer();
+        assertThat(layer.getNodeSize()).isEqualTo(0);
+    }
+
+    @Test
     public void simpleInput() throws Exception {
         Layer layer = new Layer(1);
         assertThat(layer.calculate(Lists.newArrayList(2.0, 3.0))).containsOnly(5.0);
