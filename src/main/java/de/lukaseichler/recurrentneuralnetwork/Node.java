@@ -15,12 +15,14 @@ public class Node {
     private ActivationFunction activationFunction;
     private List<Double> weights = new ArrayList<>();
 
-    public Node(@Nullable ActivationFunction activationFunction) {
-        this.activationFunction = activationFunction;
+    public Node() {
+        this(new LogActivation());
     }
 
-    public Node() {
+    public Node(@Nonnull ActivationFunction activationFunction) {
+        Preconditions.checkNotNull(activationFunction);
 
+        this.activationFunction = activationFunction;
     }
 
     public double calculate(@Nonnull List<Double> inputs) {
@@ -30,18 +32,19 @@ public class Node {
             double input = inputs.get(i);
             result += input * getWeight(i);
         }
-        if (activationFunction != null) {
-            return activationFunction.apply(result);
-        } else {
-            return result;
-        }
+        return activationFunction.apply(result);
     }
 
     private double getWeight(int i) {
         if (i < weights.size()) {
             return weights.get(i);
         }
+        weights.add(1.0);
         return 1;
+    }
+
+    public @Nonnull ActivationFunction getActivationFunction() {
+        return activationFunction;
     }
 
     public void setActivationFunction(@Nullable ActivationFunction activationFunction) {
@@ -53,5 +56,18 @@ public class Node {
 
         this.weights = new ArrayList<>(weights.length);
         Arrays.stream(weights).forEach(this.weights::add);
+    }
+
+    public List<Double> updateWeights(@Nonnull final List<Double> deltas) {
+        Preconditions.checkNotNull(deltas);
+        if (weights.size() > 0 && weights.size() != deltas.size()) {
+            throw new IllegalArgumentException("Expecting matching the size of the weights used. " + weights.size() + " are used and " + deltas.size() + " should be applied");
+        }
+
+        for (int i = 0; i < deltas.size(); i++) {
+            weights.set(i, getWeight(i) + deltas.get(i));
+        }
+
+        return weights;
     }
 }

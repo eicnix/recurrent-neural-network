@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class ActivationFunctionTest {
 
-    public static final int TEST_VALUE = 3;
+    private static final int TEST_VALUE = 3;
 
     @Test
     public void logActivationFunction() throws Exception {
