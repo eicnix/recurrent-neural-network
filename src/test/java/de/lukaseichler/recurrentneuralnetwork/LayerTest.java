@@ -37,14 +37,33 @@ public class LayerTest extends NeuralNetworkTest {
     }
 
     @Test
-    public void trainLayer() throws Exception {
-        Layer layer = new Layer(1);
-        layer.train(0.3, null, Arrays.asList(1.0));
+    public void trainLayerWithPreviousWeights() throws Exception {
+        Layer layer = new Layer(2);
+        assertThat(layer.train(0.3, Arrays.asList(1.3, 1.2), Arrays.asList(1.0, 2.0))).hasSize(4);
     }
 
     @Test
     public void trainReturnsAllUpdatedWeights() throws Exception {
         Layer layer = new Layer(2);
+        assertThat(layer.train(0.3, Arrays.asList(1.0, 1.0))).hasSize(4);
+    }
+
+    @Test(expectedExceptions = NullPointerException.class)
+    public void trainWithNullPreviousWeights() throws Exception {
+        Layer layer = new Layer(2);
         assertThat(layer.train(0.3, null, Arrays.asList(1.0, 1.0))).hasSize(4);
+
+    }
+
+    @Test
+    public void trainWithoutPreviousWeights() throws Exception {
+        Layer layer = new Layer(2);
+        assertThat(layer.train(0.3, Arrays.asList(1.0, 1.0))).hasSize(4);
+    }
+
+    @Test(expectedExceptions = NullPointerException.class)
+    public void trainNullInput() throws Exception {
+        Layer layer = new Layer(2);
+        layer.train(0.3, null, null);
     }
 }

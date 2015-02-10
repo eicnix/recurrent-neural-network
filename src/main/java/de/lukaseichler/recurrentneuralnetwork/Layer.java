@@ -31,20 +31,29 @@ public class Layer {
         return nodes.size();
     }
 
-    public List<Double> train(final double error, final List<Double> previousWeights, final List<Double> inputs) {
-        List<Double> updatedWeights = new ArrayList<>();
+    public List<Double> train(final double error, @Nonnull final List<Double> previousWeights, @Nonnull final List<Double> inputs) {
+        Preconditions.checkNotNull(previousWeights);
+        Preconditions.checkNotNull(inputs);
         List<Double> deltas = new ArrayList<>();
-        if (previousWeights == null) {
-            inputs.forEach(y -> deltas.add(y * error));
-        } else {
-            for (int i = 0; i < inputs.size(); i++) {
-                deltas.add(inputs.get(i) * previousWeights.get(i) * error);
-            }
+        for (int i = 0; i < inputs.size(); i++) {
+            deltas.add(inputs.get(i) * previousWeights.get(i) * error);
         }
+        return trainNodes(deltas);
+    }
+
+    private List<Double> trainNodes(@Nonnull final List<Double> deltas) {
+        List<Double> updatedWeights = new ArrayList<>();
         for (Node node : nodes) {
             updatedWeights.addAll(node.updateWeights(deltas));
         }
         return updatedWeights;
+    }
+
+    public List<Double> train(final double error, @Nonnull final List<Double> inputs) {
+        Preconditions.checkNotNull(inputs);
+        List<Double> deltas = new ArrayList<>();
+        inputs.forEach(y -> deltas.add(y * error));
+        return trainNodes(deltas);
     }
 
     public @Nonnull List<Double> calculate(@Nonnull List<Double> inputs) {

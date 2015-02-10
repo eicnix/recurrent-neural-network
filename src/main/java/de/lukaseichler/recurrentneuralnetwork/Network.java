@@ -59,7 +59,11 @@ public class Network {
         List<Double> previousWeights = null;
         for (Layer layer : Lists.reverse(layers)) {
             List<Double> results = resultsIterator.next();
-            previousWeights = layer.train(expected, previousWeights, results);
+            if (previousWeights == null) {
+                previousWeights = layer.train(expected, results);
+            } else {
+                previousWeights = layer.train(expected, previousWeights, results);
+            }
         }
         results.clear();
     }
