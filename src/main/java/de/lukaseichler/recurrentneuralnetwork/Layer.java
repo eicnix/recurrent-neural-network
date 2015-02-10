@@ -33,7 +33,6 @@ public class Layer {
 
     public List<Double> train(final double error, final List<Double> previousWeights, final List<Double> inputs) {
         List<Double> updatedWeights = new ArrayList<>();
-        List<Double> results = calculate(inputs);
         List<Double> deltas = new ArrayList<>();
         if (previousWeights == null) {
             inputs.forEach(y -> deltas.add(y * error));
