@@ -1,4 +1,4 @@
-package de.lukaseichler.recurrentneuralnetwork;
+package de.lukaseichler.recurrentneuralnetwork.structure;
 
 import java.util.List;
 import javax.annotation.Nonnull;

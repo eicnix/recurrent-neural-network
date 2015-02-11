@@ -1,4 +1,4 @@
-package de.lukaseichler.recurrentneuralnetwork;
+package de.lukaseichler.recurrentneuralnetwork.structure;
 
 import org.testng.annotations.Test;
 import com.google.common.collect.Lists;

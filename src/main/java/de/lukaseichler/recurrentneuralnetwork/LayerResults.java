@@ -11,6 +11,7 @@ import com.google.common.base.Preconditions;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.ListMultimap;
 import com.google.common.collect.MultimapBuilder;
+import de.lukaseichler.recurrentneuralnetwork.structure.Layer;
 
 /**
  * @author leichler

@@ -1,8 +1,10 @@
-package de.lukaseichler.recurrentneuralnetwork;
+package de.lukaseichler.recurrentneuralnetwork.structure;
 
 import java.util.Arrays;
 import org.testng.annotations.Test;
 import com.google.common.collect.Lists;
+import de.lukaseichler.recurrentneuralnetwork.LogActivation;
+import de.lukaseichler.recurrentneuralnetwork.NeuralNetworkTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -14,7 +16,7 @@ public class LayerTest extends NeuralNetworkTest {
     @Test
     public void layerWithoutNodes() throws Exception {
         Layer layer = new Layer();
-        assertThat(layer.getNodeSize()).isEqualTo(0);
+        assertThat(layer.getNeuronCount()).isEqualTo(0);
     }
 
     @Test

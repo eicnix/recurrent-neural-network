@@ -1,9 +1,11 @@
-package de.lukaseichler.recurrentneuralnetwork;
+package de.lukaseichler.recurrentneuralnetwork.structure;
 
 import java.util.Arrays;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import com.google.common.collect.Lists;
+import de.lukaseichler.recurrentneuralnetwork.LogActivation;
+import de.lukaseichler.recurrentneuralnetwork.NeuralNetworkTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

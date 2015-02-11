@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import de.lukaseichler.recurrentneuralnetwork.structure.Layer;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

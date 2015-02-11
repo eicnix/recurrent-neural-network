@@ -1,4 +1,4 @@
-package de.lukaseichler.recurrentneuralnetwork;
+package de.lukaseichler.recurrentneuralnetwork.structure;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -6,6 +6,8 @@ import java.util.List;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import com.google.common.base.Preconditions;
+import de.lukaseichler.recurrentneuralnetwork.ActivationFunction;
+import de.lukaseichler.recurrentneuralnetwork.LogActivation;
 
 /**
  * @author leichler

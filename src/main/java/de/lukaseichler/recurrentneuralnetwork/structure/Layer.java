@@ -1,10 +1,12 @@
-package de.lukaseichler.recurrentneuralnetwork;
+package de.lukaseichler.recurrentneuralnetwork.structure;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 import com.google.common.base.Preconditions;
+import de.lukaseichler.recurrentneuralnetwork.ActivationFunction;
+import de.lukaseichler.recurrentneuralnetwork.LogActivation;
 
 /**
  * @author leichler
@@ -27,7 +29,7 @@ public class Layer {
         }
     }
 
-    public int getNodeSize() {
+    public int getNeuronCount() {
         return nodes.size();
     }
 

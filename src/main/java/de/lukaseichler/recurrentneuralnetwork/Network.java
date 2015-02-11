@@ -5,7 +5,10 @@ import java.util.Iterator;
 import java.util.List;
 import javax.annotation.Nonnull;
 import com.google.common.base.Preconditions;
+import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
+import de.lukaseichler.recurrentneuralnetwork.structure.InputLayer;
+import de.lukaseichler.recurrentneuralnetwork.structure.Layer;
 
 /**
  * @author leichler
@@ -49,6 +52,7 @@ public class Network {
         return results;
     }
 
+    @SuppressWarnings("ConstantConditions")
     public void train(final double expected, final List<Double> inputs) {
         results.add(null, inputs);
         for (Layer layer : layers) {
@@ -68,4 +72,24 @@ public class Network {
         results.clear();
     }
 
+    public int getHiddenLayerCount() {
+        if (layers.size() < 3) {
+            return 0;
+        }
+        return layers.size() - 2;
+    }
+
+    public int getInputNeuronCount() {
+        if (layers.size() == 0) {
+            return 0;
+        }
+        return layers.get(0).getNeuronCount();
+    }
+
+    public int getOutputNeuronCount() {
+        if (layers.size() < 2) {
+            return 0;
+        }
+        return Iterables.getLast(layers).getNeuronCount();
+    }
 }
