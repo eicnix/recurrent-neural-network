@@ -113,6 +113,30 @@ public class NetworkTest extends NeuralNetworkTest {
         network.addLayer(3);
         assertThat(network.getOutputNeuronCount()).isEqualTo(3);
     }
+
+    @Test
+    public void calculateState() throws Exception {
+        Network network = new Network();
+        network.addLayer(3);
+        network.addLayer(3);
+        network.addLayer(3);
+        List<Double> state = network.calculateState(Arrays.asList(0.3, 1.0));
+        assertThat(network.calculate(Arrays.asList(0.3, 1.0))).isNotEqualTo(state);
+    }
+
+    @Test(expectedExceptions = NullPointerException.class)
+    public void calculateStateNullInputs() throws Exception {
+        Network network = new Network();
+        network.calculateState(null);
+    }
+
+    @Test(expectedExceptions = IllegalStateException.class)
+    public void calculateStateInvalidNetworkStructure() throws Exception {
+        Network network = new Network();
+        network.addLayer(3);
+        List<Double> state = network.calculateState(Arrays.asList(0.3, 1.0));
+        assertThat(network.calculate(Arrays.asList(0.3, 1.0))).isNotEqualTo(state);
+    }
 }
 
 

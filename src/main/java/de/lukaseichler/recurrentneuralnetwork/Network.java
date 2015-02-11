@@ -43,10 +43,19 @@ public class Network {
         return (expected - result) * (1 - result) * result;
     }
 
-    public List<Double> calculate(@Nonnull List<Double> input) {
+    public List<Double> calculate(@Nonnull List<Double> inputs) {
+        return Iterables.getLast(layers).calculate(calculateState(inputs));
+    }
+
+    public List<Double> calculateState(@Nonnull final List<Double> inputs) {
+        Preconditions.checkNotNull(inputs);
+        if (layers.size() < 2) {
+            throw new IllegalStateException("Trying to calculate the state for a network that does not have a valid structure");
+        }
         List<Double> results = new ArrayList<>();
-        input.forEach(results::add);
-        for (Layer layer : layers) {
+        inputs.forEach(results::add);
+        for (int i = 0, layersSize = layers.size() - 1; i < layersSize; i++) {
+            final Layer layer = layers.get(i);
             results = layer.calculate(results);
         }
         return results;
