@@ -3,6 +3,7 @@ package de.lukaseichler.recurrentneuralnetwork;
 import java.util.Arrays;
 import java.util.List;
 import org.testng.annotations.Test;
+import de.lukaseichler.recurrentneuralnetwork.activation.LogActivation;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

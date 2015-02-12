@@ -5,25 +5,24 @@ import javax.annotation.Nonnull;
 
 /**
  * @author leichler
- *         TODO split in state and output layer
  */
 public class RecurrentNeuralNetwork extends Network {
 
-    private List<Double> state;
+    private List<Double> previousState;
 
     @Override public List<Double> calculate(@Nonnull final List<Double> input) {
         List<Double> result = super.calculate(input);
         for (int i = 0; i < result.size(); i++) {
             result.set(i, result.get(i) * getState(i));
         }
-        state = result;
+        previousState = result;
         return result;
     }
 
     private Double getState(final int i) {
-        if (state == null) {
+        if (previousState == null) {
             return 1.0;
         }
-        return state.get(i);
+        return previousState.get(i);
     }
 }

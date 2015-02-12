@@ -1,5 +1,7 @@
 package de.lukaseichler.recurrentneuralnetwork;
 
+import de.lukaseichler.recurrentneuralnetwork.activation.LogActivation;
+
 /**
  * @author leichler
  */

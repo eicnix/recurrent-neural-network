@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 import com.google.common.base.Preconditions;
-import de.lukaseichler.recurrentneuralnetwork.ActivationFunction;
-import de.lukaseichler.recurrentneuralnetwork.LogActivation;
+import de.lukaseichler.recurrentneuralnetwork.activation.ActivationFunction;
+import de.lukaseichler.recurrentneuralnetwork.activation.LogActivation;
 
 /**
  * @author leichler

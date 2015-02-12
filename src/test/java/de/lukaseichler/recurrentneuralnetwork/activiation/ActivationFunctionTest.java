@@ -1,6 +1,8 @@
-package de.lukaseichler.recurrentneuralnetwork;
+package de.lukaseichler.recurrentneuralnetwork.activiation;
 
 import org.testng.annotations.Test;
+import de.lukaseichler.recurrentneuralnetwork.activation.ActivationFunction;
+import de.lukaseichler.recurrentneuralnetwork.activation.LogActivation;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

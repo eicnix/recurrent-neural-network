@@ -3,8 +3,8 @@ package de.lukaseichler.recurrentneuralnetwork.structure;
 import java.util.Arrays;
 import org.testng.annotations.Test;
 import com.google.common.collect.Lists;
-import de.lukaseichler.recurrentneuralnetwork.LogActivation;
 import de.lukaseichler.recurrentneuralnetwork.NeuralNetworkTest;
+import de.lukaseichler.recurrentneuralnetwork.activation.LogActivation;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

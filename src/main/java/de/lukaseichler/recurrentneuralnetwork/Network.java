@@ -7,6 +7,8 @@ import javax.annotation.Nonnull;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
+import de.lukaseichler.recurrentneuralnetwork.activation.ActivationFunction;
+import de.lukaseichler.recurrentneuralnetwork.activation.LogActivation;
 import de.lukaseichler.recurrentneuralnetwork.structure.InputLayer;
 import de.lukaseichler.recurrentneuralnetwork.structure.Layer;
 

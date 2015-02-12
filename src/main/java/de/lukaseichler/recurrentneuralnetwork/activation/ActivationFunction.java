@@ -1,4 +1,4 @@
-package de.lukaseichler.recurrentneuralnetwork;
+package de.lukaseichler.recurrentneuralnetwork.activation;
 
 /**
  * @author leichler
