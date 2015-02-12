@@ -39,6 +39,12 @@ public class Network {
         return this;
     }
 
+    public @Nonnull Network addLayer(@Nonnull final Layer layer) {
+        Preconditions.checkNotNull(layer);
+        layers.add(layer);
+        return this;
+    }
+
     public double calculateError(final double expected, @Nonnull final List<Double> inputs) {
         Preconditions.checkNotNull(inputs);
         double result = calculate(inputs).get(0);

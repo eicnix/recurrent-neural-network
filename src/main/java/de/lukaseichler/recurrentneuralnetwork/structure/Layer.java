@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 import com.google.common.base.Preconditions;
+import com.sun.istack.internal.NotNull;
 import de.lukaseichler.recurrentneuralnetwork.activation.ActivationFunction;
 import de.lukaseichler.recurrentneuralnetwork.activation.LogActivation;
 
@@ -13,6 +14,7 @@ import de.lukaseichler.recurrentneuralnetwork.activation.LogActivation;
  */
 public class Layer {
     private final List<Node> nodes;
+    private ActivationFunction activationFunction;
 
     public Layer() {
         this(0);
@@ -23,6 +25,8 @@ public class Layer {
     }
 
     public Layer(final int nodeCount, @Nonnull final ActivationFunction activationFunction) {
+        Preconditions.checkNotNull(activationFunction);
+        this.activationFunction = activationFunction;
         nodes = new ArrayList<>(nodeCount);
         for (int j = 0; j < nodeCount; j++) {
             nodes.add(new Node(activationFunction));
@@ -63,5 +67,9 @@ public class Layer {
         List<Double> results = new ArrayList<>(nodes.size());
         results.addAll(nodes.stream().map(node -> node.calculate(inputs)).collect(Collectors.toList()));
         return results;
+    }
+
+    public @NotNull ActivationFunction getActivationFunction() {
+        return activationFunction;
     }
 }

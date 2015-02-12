@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import org.testng.annotations.Test;
 import de.lukaseichler.recurrentneuralnetwork.activation.LogActivation;
+import de.lukaseichler.recurrentneuralnetwork.structure.SmoothingLayer;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -79,6 +80,21 @@ public class NetworkTest extends NeuralNetworkTest {
         network.addLayer(2);
         network.addLayer(1);
         assertThat(network.getHiddenLayerCount()).isEqualTo(1);
+    }
+
+    @Test
+    public void addLayerInstance() throws Exception {
+        Network network = new Network();
+        network.addLayer(2);
+        network.addLayer(2);
+        network.addLayer(new SmoothingLayer());
+        assertThat(network.getHiddenLayerCount()).isEqualTo(1);
+    }
+
+    @Test(expectedExceptions = NullPointerException.class)
+    public void addNullLayer() throws Exception {
+        Network network = new Network();
+        network.addLayer(null);
     }
 
     @Test

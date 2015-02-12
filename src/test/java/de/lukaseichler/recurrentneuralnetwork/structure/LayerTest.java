@@ -26,6 +26,17 @@ public class LayerTest extends NeuralNetworkTest {
     }
 
     @Test
+    public void instantiationWithoutParameterLogActivation() throws Exception {
+        Layer layer = new Layer();
+        assertThat(layer.getActivationFunction()).hasSameClassAs(new LogActivation());
+    }
+
+    @Test(expectedExceptions = NullPointerException.class)
+    public void nullActivationFunction() throws Exception {
+        Layer layer = new Layer(0, null);
+    }
+
+    @Test
     public void multipleNodes() throws Exception {
         Layer layer = new Layer(2);
         assertThat(layer.calculate(Lists.newArrayList(2.0, 3.0))).containsOnly(applyDefaultActivationFunction(5.0), applyDefaultActivationFunction(5.0));
