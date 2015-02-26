@@ -1,27 +1,23 @@
 package de.lukaseichler.recurrentneuralnetwork.datatransformation
 
-import java.util
-import java.util.Comparator
-
-import org.assertj.core.api.Assertions._
+import org.scalatest.Matchers
 import org.scalatest.testng.TestNGSuite
 import org.testng.annotations.Test
-
 
 /**
  * @author leichler
  */
-class ScaleTest extends TestNGSuite {
-
+class ScaleTest extends TestNGSuite with Matchers {
 
     @Test
     def scaleListOfInputs() {
-        val result = Scale.scale(util.Arrays.asList(0.0, 5.0, 10.0))
-        assertThat(result).containsOnly(0.0, 0.5, 1.0)
+      val result = Scale.scale(List(0.0, 5.0, 10.0))
+      result should (contain(0.0) and contain(0.5) and contain(1))
     }
 
-    @Test
-    def sortResults() {
-        assertThat(Scale.scale(util.Arrays.asList(5.0, 0.0, 10.0))).isSortedAccordingTo(Comparator.naturalOrder())
-    }
+  @Test
+  def sortResults() {
+    val result = Scale.scale(List(0.0, 5.0, 10.0))
+    result shouldBe sorted
+  }
 }

@@ -8,6 +8,7 @@ buildscript {
 }
 
 apply plugin: 'java'
+apply plugin: 'scala'
 apply plugin: 'cobertura'
 apply plugin: 'application'
 apply plugin: 'idea'
@@ -19,12 +20,13 @@ idea {
     }
 }
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
 version = '0.1'
 group = 'de.lukaseichler'
 
 repositories {
+    mavenLocal()
     mavenCentral()
 }
 
@@ -32,14 +34,16 @@ dependencies {
     compile(
             ['com.google.code.findbugs:jsr305:3.0.0'],
             ['org.scalatest:scalatest_2.11:3.0.0-SNAP4'],
+            ['org.assertj:assertj-core:1.7.0'],
+            ['de.lukaseichler:assertj-scala-collections:0.1'],
             ['com.google.guava:guava:18.0']
     )
 
     testCompile(
             ['org.testng:testng:6.8.21'],
             ['org.uncommons:reportng:1.1.4'],
-            ['org.assertj:assertj-core:1.7.0'],
             ['org.mockito:mockito-all:1.10.8'],
+            ['de.lukaseichler:assertj-scala-collections:0.1'],
             // workaround for a known issue with TestNG 6.x: explicitly add Guice (Gradle will fail to run tests otherwise)
             ['com.google.inject:guice:3.0']
     )
